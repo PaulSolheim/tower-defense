@@ -8,14 +8,38 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Bullet",
+"language": "GDScript",
+"path": "res://Objects/Bullets/Bullet.gd"
+}, {
+"base": "Area2D",
+"class": "HitBoxArea2D",
+"language": "GDScript",
+"path": "res://Objects/HitBox/HitBoxArea2D.gd"
+}, {
+"base": "Area2D",
+"class": "HurtBoxArea2D",
+"language": "GDScript",
+"path": "res://Objects/HurtBox/HurtBoxArea2D.gd"
+}, {
+"base": "Node2D",
+"class": "Weapon2D",
+"language": "GDScript",
+"path": "res://Objects/Weapon2D/Weapon2D.gd"
+} ]
 _global_script_class_icons={
+"Bullet": "",
+"HitBoxArea2D": "",
+"HurtBoxArea2D": "",
+"Weapon2D": ""
 }
 
 [application]
 
-config/name="Tower Defense - Start"
-config/description="The initial version of 2D Secrets topdown tower defense game project."
+config/name="Tower Defense"
+config/description="Topdown tower defense game project."
 config/icon="res://icon.png"
 
 [debug]
