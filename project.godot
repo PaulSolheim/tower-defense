@@ -24,6 +24,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Objects/HurtBox/HurtBoxArea2D.gd"
 }, {
+"base": "Area2D",
+"class": "SelectableArea2D",
+"language": "GDScript",
+"path": "res://Objects/SelectableArea2D/SelectableArea2D.gd"
+}, {
+"base": "Node2D",
+"class": "Tower",
+"language": "GDScript",
+"path": "res://Objects/Towers/Tower.gd"
+}, {
 "base": "Node2D",
 "class": "Weapon2D",
 "language": "GDScript",
@@ -33,6 +43,8 @@ _global_script_class_icons={
 "Bullet": "",
 "HitBoxArea2D": "",
 "HurtBoxArea2D": "",
+"SelectableArea2D": "",
+"Tower": "",
 "Weapon2D": ""
 }
 
