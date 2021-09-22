@@ -32,3 +32,31 @@ func show_range() -> void:
 
 func hide_range() -> void:
 	_range_preview.disappear()
+
+func shoot_at(target_position: Vector2) -> void:
+	look_at(target_position)
+	_animation_player.play("shoot")
+	
+	var bullet = bullet_scene.instance()
+	add_child(bullet)
+	bullet.global_position = _bullet_spawn_position.global_position
+	
+	bullet.fly_to(target_position)
+	_cooldown_timer.start(fire_cooldown)
+	emit_signal("fired")
+
+func _physics_process(delta: float) -> void:
+	if not _cooldown_timer.is_stopped():
+		return
+	
+	# Test, husk å fjerne etter testing
+	#if Input.is_mouse_button_pressed(BUTTON_LEFT):
+	#	shoot_at(get_global_mouse_position())
+	
+	var targets: Array = _range_area.get_overlapping_areas()
+	if targets.empty():
+		return
+	
+	var target: Node2D = targets[0]
+	shoot_at(target.global_position)
+	

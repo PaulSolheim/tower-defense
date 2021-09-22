@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Objects/Towers/Tower.gd"
 }, {
+"base": "TileMap",
+"class": "TowerPlacer",
+"language": "GDScript",
+"path": "res://Levels/TowerPlacer/TowerPlacer.gd"
+}, {
 "base": "Node2D",
 "class": "Weapon2D",
 "language": "GDScript",
@@ -45,6 +50,7 @@ _global_script_class_icons={
 "HurtBoxArea2D": "",
 "SelectableArea2D": "",
 "Tower": "",
+"TowerPlacer": "",
 "Weapon2D": ""
 }
 

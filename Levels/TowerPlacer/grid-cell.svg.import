@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/grid-cell.svg-6dc3d08e9807150ffe3b0752d9dacc85.stex"
+path="res://.import/grid-cell.svg-44e798e11443aec844dd0cfbbb04cd83.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://grid-cell.svg"
-dest_files=[ "res://.import/grid-cell.svg-6dc3d08e9807150ffe3b0752d9dacc85.stex" ]
+source_file="res://Levels/TowerPlacer/grid-cell.svg"
+dest_files=[ "res://.import/grid-cell.svg-44e798e11443aec844dd0cfbbb04cd83.stex" ]
 
 [params]
 

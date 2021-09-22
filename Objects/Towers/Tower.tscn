@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Objects/Weapon2D/Weapon2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Objects/SelectableArea2D/SelectableArea2D.tscn" type="PackedScene" id=2]
 [ext_resource path="res://UI/UIUnit/UIUnit.tscn" type="PackedScene" id=3]
 [ext_resource path="res://sprite-sheet.svg" type="Texture" id=4]
 [ext_resource path="res://Objects/Towers/Tower.gd" type="Script" id=5]
+[ext_resource path="res://UI/UICooldownBar/UICooldownBar.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
@@ -36,6 +37,7 @@ position = Vector2( 32, 32 )
 shape = SubResource( 1 )
 
 [node name="Interface" parent="." instance=ExtResource( 3 )]
+rect_scale = Vector2( 1, 1 )
 
 [node name="SellButton" type="Button" parent="Interface"]
 margin_left = -32.0
@@ -47,6 +49,8 @@ text = "Sell"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="UICooldownBar" parent="." instance=ExtResource( 6 )]
 
 [connection signal="fired" from="Weapon2D" to="." method="_on_Weapon2D_fired"]
 [connection signal="selection_changed" from="SelectableArea2D" to="." method="_on_SelectableArea2D_selection_changed"]
