@@ -1,0 +1,110 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Objects/HitBox/HitBoxArea2D.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Objects/HurtBox/HurtBoxArea2D.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Actors/Enemies/CutoutCharacter.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Actors/Enemies/Enemy.gd" type="Script" id=4]
+[ext_resource path="res://UI/UIHealthBar/UIHealthBar.tscn" type="PackedScene" id=5]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 32.2518
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 19.5972
+
+[sub_resource type="Animation" id=3]
+resource_name = "disappear"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.25 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "spawn"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Enemy" type="PathFollow2D"]
+loop = false
+script = ExtResource( 4 )
+
+[node name="CutoutCharacter" parent="." instance=ExtResource( 3 )]
+
+[node name="HurtBoxArea2D" parent="." instance=ExtResource( 2 )]
+team = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxArea2D"]
+position = Vector2( 0.707108, -4.41942 )
+shape = SubResource( 1 )
+
+[node name="HitBoxArea2D" parent="." instance=ExtResource( 1 )]
+team = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxArea2D"]
+position = Vector2( 0.707108, -4.41942 )
+shape = SubResource( 1 )
+
+[node name="VisibleArea2D" type="Area2D" parent="."]
+monitoring = false
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisibleArea2D"]
+position = Vector2( 0.530327, -4.24265 )
+shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "spawn"
+anims/disappear = SubResource( 3 )
+anims/spawn = SubResource( 4 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../UIPivot")
+update_rotation = false
+update_scale = false
+
+[node name="UIPivot" type="Node2D" parent="."]
+
+[node name="HealthBar" parent="UIPivot" instance=ExtResource( 5 )]
+margin_left = -72.0
+margin_top = -72.0
+margin_right = 100.0
+margin_bottom = -54.0
+
+[connection signal="hit_landed" from="HurtBoxArea2D" to="." method="_on_HurtBoxArea2D_hit_landed"]

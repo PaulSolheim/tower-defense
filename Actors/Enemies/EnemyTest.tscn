@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Actors/Enemies/Enemy.tscn" type="PackedScene" id=1]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -0.116913, 0.823944, 0, 0, 0, 0, 116.002, 157.397, 0, 0, 0, 0, 324.267, 203.095, 0, 0, 0, 0, 398.433, 340.191, 0, 0, 0, 0, 567.742, 348.431, 0, 0, 0, 0, 693.599, 464.55, 0, 0, 0, 0, 872.647, 226.319 )
+}
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Path2D
+
+func _ready() -> void:
+	var scene_tree := get_tree()
+	var enemy := $Enemy
+	
+	yield(scene_tree.create_timer(0.5), \"timeout\")
+	enemy.move()
+	
+	for i in 5:
+		yield(scene_tree.create_timer(1.0), \"timeout\")
+		enemy.health -= 1
+"
+
+[node name="EnemyTest" type="Path2D"]
+curve = SubResource( 1 )
+script = SubResource( 2 )
+
+[node name="Enemy" parent="." instance=ExtResource( 1 )]
+position = Vector2( -0.116913, 0.823944 )
+rotation = 0.932675
