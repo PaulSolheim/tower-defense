@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://UI/UITowerShop/UITowerPurchaseButton.gd" type="Script" id=1]
+[ext_resource path="res://UI/UITowerShop/tower-icon-pressed.svg" type="Texture" id=2]
+[ext_resource path="res://UI/UITowerShop/tower-icon-normal.svg" type="Texture" id=3]
+[ext_resource path="res://UI/UITowerShop/tower-icon-focused.svg" type="Texture" id=4]
+[ext_resource path="res://UI/UITowerShop/tower-icon-hover.svg" type="Texture" id=5]
+[ext_resource path="res://UI/UITowerShop/tower-icon-disabled.svg" type="Texture" id=6]
+[ext_resource path="res://Objects/Towers/Tower.tscn" type="PackedScene" id=7]
+
+[node name="UITowerPurchaseButton" type="TextureButton"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+action_mode = 0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 2 )
+texture_hover = ExtResource( 5 )
+texture_disabled = ExtResource( 6 )
+texture_focused = ExtResource( 4 )
+expand = true
+stretch_mode = 5
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+tower_scene = ExtResource( 7 )
+
+[node name="Label" type="Label" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -40.0
+margin_top = 16.0
+margin_right = 64.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+align = 1
+valign = 1

@@ -5,8 +5,8 @@ export var current_event = 0
 # This is a test call to kickoff the first event
 # Delete this block after the tests
 # Start of test lines
-func _ready() -> void:
-	play_current_event()
+#func _ready() -> void:
+#	play_current_event()
 # End of test lines
 
 
