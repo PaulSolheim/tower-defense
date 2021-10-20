@@ -41,7 +41,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ "You have found som gold, lucky lucky." ]
+"values": [ "You have found some gold, lucky lucky you." ]
 }
 tracks/3/type = "method"
 tracks/3/path = NodePath(".")
@@ -181,5 +181,5 @@ position = Vector2( 288, 928 )
 position = Vector2( 1760, 224 )
 
 [node name="Label" parent="UIDialogueLayer/UIDialoguePanel" index="0"]
-text = "You have found som gold, lucky lucky."
+text = "You have found some gold, lucky lucky you."
 percent_visible = 0.0
