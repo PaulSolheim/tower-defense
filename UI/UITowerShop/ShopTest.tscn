@@ -11,6 +11,7 @@ script = ExtResource( 1 )
 [node name="UITowerShop" parent="." instance=ExtResource( 3 )]
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
+gold = 300
 
 [node name="TowerPlacer" parent="." instance=ExtResource( 2 )]
 

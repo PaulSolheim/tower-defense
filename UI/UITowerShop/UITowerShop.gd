@@ -24,7 +24,7 @@ func _on_TowerPurchaseButton_tower_purchased(tower_scene: PackedScene) -> void:
 func _on_TowerPlacer_tower_placed(tower: Tower) -> void:
 	player.gold -= tower.cost
 
-func _on_Tower_sold(price, place) -> void:
+func _on_Tower_sold(price: int, _position: Vector2) -> void:
 	player.gold += price
 
 func _on_Player_gold_changed(gold_amount: int) -> void:

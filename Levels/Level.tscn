@@ -146,3 +146,5 @@ __meta__ = {
 position = Vector2( 1248, 416 )
 
 [node name="PlayerBase" parent="GoalPoint" instance=ExtResource( 4 )]
+
+[connection signal="destroyed" from="GoalPoint/PlayerBase" to="." method="_on_PlayerBase_destroyed"]

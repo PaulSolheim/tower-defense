@@ -88,6 +88,7 @@ _global_script_class_icons={
 
 config/name="Tower Defense"
 config/description="Topdown tower defense game project."
+run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 
 [debug]

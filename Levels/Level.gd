@@ -3,6 +3,8 @@ extends Node2D
 signal round_finished
 signal started
 signal finished
+signal base_destroyed
+signal gold_earned(gold_amount)
 
 const TOWER_PLACEABLE_CELLS_ID := 3
 const ENEMY_WALK_PATH_CELLS_ID := 2
@@ -41,6 +43,9 @@ func spawn_wave() -> void:
 	wave.connect("finished", self, "_on_Wave_finished")
 	_setup_wave_path(wave)
 	
+	for enemy in wave.get_children():
+		enemy.connect("died", self, "_on_Enemy_died")
+	
 	wave.start()
 
 func show_walkable_path(walking_path := _astar_grid.get_walkable_path()) -> void:
@@ -68,3 +73,9 @@ func _setup_wave_path(wave: Wave) -> void:
 
 func _on_Wave_finished() -> void:
 	start_round()
+
+func _on_Enemy_died(gold_earned: int) -> void:
+	emit_signal("gold_earned", gold_earned)
+
+func _on_PlayerBase_destroyed():
+	emit_signal("base_destroyed")
