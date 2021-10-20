@@ -9,6 +9,8 @@ signal gold_earned(gold_amount)
 const TOWER_PLACEABLE_CELLS_ID := 3
 const ENEMY_WALK_PATH_CELLS_ID := 2
 
+export(String, FILE, "*.tscn") var next_level_path
+
 onready var tower_placer := $TowerPlacer
 
 onready var _path_preview := $PathPreview

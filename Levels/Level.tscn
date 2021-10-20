@@ -1,6 +1,5 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Levels/Waves/Wave1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Areas/AsteroidSurface/tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://Levels/TowerPlacer/TowerPlacer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Objects/PlayerBase/PlayerBase.tscn" type="PackedScene" id=4]
@@ -11,92 +10,6 @@
 [ext_resource path="res://Levels/Level.gd" type="Script" id=10]
 [ext_resource path="res://sprite-sheet.svg" type="Texture" id=11]
 [ext_resource path="res://Levels/AStarGrid/AStarGrid.tscn" type="PackedScene" id=12]
-
-[sub_resource type="Animation" id=1]
-resource_name = "00.first-wave"
-tracks/0/type = "value"
-tracks/0/path = NodePath("WaveSpawner2D:spawn_scene")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 1 ) ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath("WaveSpawner2D")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 1 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "spawn"
-} ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "spawn_wave"
-} ]
-}
-
-[sub_resource type="Animation" id=2]
-resource_name = "01.second-wave"
-tracks/0/type = "value"
-tracks/0/path = NodePath("WaveSpawner2D:spawn_scene")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 7 ) ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath("WaveSpawner2D")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 1 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "spawn"
-} ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "spawn_wave"
-} ]
-}
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 10 )
@@ -127,8 +40,6 @@ __meta__ = {
 spawn_scene = ExtResource( 7 )
 
 [node name="EventsPlayer" type="AnimationPlayer" parent="."]
-anims/00.first-wave = SubResource( 1 )
-anims/01.second-wave = SubResource( 2 )
 script = ExtResource( 8 )
 
 [node name="StartPoint" type="Position2D" parent="."]
@@ -147,4 +58,44 @@ position = Vector2( 1248, 416 )
 
 [node name="PlayerBase" parent="GoalPoint" instance=ExtResource( 4 )]
 
+[node name="UIDialogueLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="UIDialoguePanel" type="Panel" parent="UIDialogueLayer"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -320.0
+margin_top = -248.0
+margin_right = 320.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UIDialogueLayer/UIDialoguePanel"]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 608.0
+margin_bottom = 160.0
+text = "Dialogue lines go here!"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="UIDialogueLayer/UIDialoguePanel"]
+margin_left = 256.0
+margin_top = 192.0
+margin_right = 334.0
+margin_bottom = 226.0
+text = "Got it!!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="destroyed" from="GoalPoint/PlayerBase" to="." method="_on_PlayerBase_destroyed"]
+[connection signal="pressed" from="UIDialogueLayer/UIDialoguePanel/Button" to="UIDialogueLayer/UIDialoguePanel" method="hide"]
+[connection signal="pressed" from="UIDialogueLayer/UIDialoguePanel/Button" to="EventsPlayer" method="play_current_event"]
