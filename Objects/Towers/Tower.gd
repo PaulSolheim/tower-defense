@@ -10,9 +10,19 @@ onready var _weapon := $Weapon2D
 onready var _interface := $Interface
 onready var _cooldown_bar := $UICooldownBar
 onready var _selection := $SelectableArea2D
+onready var _upgrades := $Upgrades
 
 func _ready() -> void:
 	_weapon.show_range()
+	for upgrade in _upgrades.get_children():
+		upgrade.weapon = _weapon
+		upgrade.connect("applied", self, "_on_Upgrade_applied")
+
+func _on_Upgrade_applied(upgrade_cost: int) -> void:
+	cost += upgrade_cost
+
+func get_upgrades() -> Array:
+	return _upgrades.get_children()
 
 func show_interface() -> void:
 	_weapon.show_range()

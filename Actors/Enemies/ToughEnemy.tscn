@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Actors/Enemies/Enemy.tscn" type="PackedScene" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 44.8889
+
+[node name="Enemy" instance=ExtResource( 1 )]
+speed = 128.0
+max_health = 20
+gold_value = 75
+
+[node name="CutoutCharacter" parent="." index="0"]
+scale = Vector2( 1.2, 1.2 )
+
+[node name="Sprite" parent="CutoutCharacter" index="1"]
+region_rect = Rect2( 384, 64, 57, 57 )
+
+[node name="Sprite2" parent="CutoutCharacter" index="2"]
+region_rect = Rect2( 384, 64, 57, 57 )
+
+[node name="Sprite3" parent="CutoutCharacter" index="3"]
+region_rect = Rect2( 384, 64, 57, 57 )
+
+[node name="Sprite4" parent="CutoutCharacter" index="4"]
+region_rect = Rect2( 384, 64, 57, 57 )
+
+[node name="CollisionShape2D" parent="VisibleArea2D" index="0"]
+shape = SubResource( 1 )
+
+[editable path="CutoutCharacter"]
