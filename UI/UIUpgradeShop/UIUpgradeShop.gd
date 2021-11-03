@@ -14,7 +14,7 @@ func _on_TowerPlacer_tower_placed(tower: Tower) -> void:
 	tower.connect("sold", self, "_on_Tower_sold")
 
 func _on_Tower_sold(_price: int, place: Vector2) -> void:
-	_anim_player.play("Disappear")
+	disappear()
 
 func _update(tower: Tower) -> void:
 	rect_global_position = tower.global_position
@@ -48,4 +48,23 @@ func _on_UIUpgradeButton_pressed(button: UIUpgradeButton, upgrade: Upgrade) -> v
 	player.gold -= upgrade.cost
 	upgrade.apply()
 	button.update_display(upgrade, player.gold)
+
+func _on_Tower_selected(selected: bool, tower: Tower) -> void:
+	_update(tower)
+	
+	if selected:
+		appear()
+	else:
+		disappear()
+
+func disappear() -> void:
+	_anim_player.play("Disappear")
+	
+func appear() -> void:
+	rect_rotation = -90
+	_panel.rect_rotation = 90
+
+	if not get_viewport_rect().encloses(_panel.get_global_rect()):
+		_fit_panel_in_view()
+	_anim_player.play("Appear")
 

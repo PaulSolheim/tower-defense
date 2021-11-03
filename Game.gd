@@ -11,10 +11,12 @@ onready var _mouse_barrier := $UILayer/UI/MouseBarrier
 onready var _retry_button := $UILayer/UI/HUD/RetryButton
 onready var _start_button := $UILayer/UI/HUD/StartButton
 onready var _gold_panel := $UILayer/UI/HUD/UIGoldPanel
+onready var _upgrade_shop := $UILayer/UI/HUD/UIUpgradeShop
 
 func _ready() -> void:
 	_tower_shop.player = _player
 	_gold_panel.player = _player
+	_upgrade_shop.player = _player
 	_setup_level()
 	_level.start()
 
@@ -71,6 +73,7 @@ func _setup_level() -> void:
 	
 	# Link the TowerShop with the Level's TowerPlacer
 	_level.tower_placer.connect("tower_placed", _tower_shop, "_on_TowerPlacer_tower_placed")
+	_level.tower_placer.connect("tower_placed", _upgrade_shop, "_on_TowerPlacer_tower_placed")
 	_tower_shop.connect("tower_purchased", _level.tower_placer, "add_new_tower")
 
 func _load_next_level() -> void:
